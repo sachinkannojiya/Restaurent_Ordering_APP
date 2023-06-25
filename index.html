@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant App</title>
+  <style>
+    /* Add any CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Restaurant App</h1>
+
+  <form id="menu-form">
+    <h2>Add a Dish</h2>
+    <label for="dish-name">Dish Name:</label>
+    <input type="text" id="dish-name" required>
+    <label for="dish-price">Dish Price:</label>
+    <input type="number" id="dish-price" required>
+    <br>
+    <label for="table-number">Table Number:</label>
+    <select id="table-number" required>
+      <option value="1">Table 1</option>
+      <option value="2">Table 2</option>
+      <option value="3">Table 3</option>
+    </select>
+    <br>
+    <button type="submit">Add to Bill</button>
+  </form>
+
+  <h2>Bill Summary</h2>
+  <div id="bill-summary">
+    <table id="table-1">
+        <h2>Table 1</h2>
+
+    </table>
+
+    <table id="table-2">
+      <h2>Table 2</h2>
+    </table>
+
+    <table id="table-3">
+      <h2>Table 3</h2   >
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+ <script src="app.js"></script>
+</body>
+</html>
