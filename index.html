@@ -1,48 +1,51 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Restaurant App</title>
-  <style>
-    /* Add any CSS styles here */
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS For Beginners</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0375fd65ad.js" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-  <h1>Restaurant App</h1>
+    <header>
+        <h1>Restaurent App</h1>
+    </header>
 
-  <form id="menu-form">
-    <h2>Add a Dish</h2>
-    <label for="dish-name">Dish Name:</label>
-    <input type="text" id="dish-name" required>
-    <label for="dish-price">Dish Price:</label>
-    <input type="number" id="dish-price" required>
-    <br>
-    <label for="table-number">Table Number:</label>
-    <select id="table-number" required>
-      <option value="1">Table 1</option>
-      <option value="2">Table 2</option>
-      <option value="3">Table 3</option>
-    </select>
-    <br>
-    <button type="submit">Add to Bill</button>
-  </form>
+    <section class="container">
+        <form id="my-form">
+            <h1>Add Dish</h1>
+            <div class="msg"></div>
+            <div>
+                <label for="name">Dish Name:</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div>
+                <label for="name">Dish Price:</label>
+                <input type="text" name="price" id="price">
+            </div>
+            <button type="submit" class="btn">Add to Bill</button>
+            <!-- <input id="submitbutton" class="btn" type="submit" value="Submit"> -->
+        </form>
 
-  <h2>Bill Summary</h2>
-  <div id="bill-summary">
-    <table id="table-1">
-        <h2>Table 1</h2>
+        <ul id="users">
 
-    </table>
+        </ul>
 
-    <table id="table-2">
-      <h2>Table 2</h2>
-    </table>
-
-    <table id="table-3">
-      <h2>Table 3</h2   >
-    </table>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
- <script src="app.js"></script>
+        <!-- <ul class="items">
+            <li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+            <li class="item">Item 3</li>
+        </ul> -->
+    </section>
+    <!-- <script src="https://kit.fontawesome.com/0375fd65ad.js" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>

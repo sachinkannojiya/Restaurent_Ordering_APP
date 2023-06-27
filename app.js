@@ -1,182 +1,82 @@
+document.getElementById("my-form").addEventListener("submit", addUser);
 
-// // Add JavaScript code here
-// document.getElementById('menu-form').addEventListener('submit', function(event) {
-//   event.preventDefault();
+async function addUser(e) {
+  e.preventDefault();
 
-//   // Get input values
-//   var dishName = document.getElementById('dish-name').value;
-//   var dishPrice = document.getElementById('dish-price').value;
-//   var tableNumber = document.getElementById('table-number').value;
+  const name = e.target.name.value;
+  const price = e.target.price.value;
 
-//   // Create new table row
-//   var newRow = document.createElement('tr');
-//   newRow.innerHTML = `
-//     <td>${dishName}</td>
-//     <td>${dishPrice}</td>
-//     <td>
-//       <button onclick="deleteOrder(this)">Delete</button>
-//     </td>
-//   `;
-
-//   // Append the new row to the corresponding table
-//   var billTable = document.getElementById('table-' + tableNumber);
-//   billTable.appendChild(newRow);
-
-//   // Reset the form
-//   document.getElementById('dish-name').value = '';
-//   document.getElementById('dish-price').value = '';
-//   document.getElementById('table-number').value = '';
-// });
-
-// function deleteOrder(button) {
-//   // Get the parent row and remove it
-//   var row = button.parentNode.parentNode;
-//   row.parentNode.removeChild(row);
-// }
-
-
-// Import Axios library
-// import axios from 'axios';
-
-// // Define the base URL for the API
-// const BASE_URL = 'https://crudcrud.com/api/4eac9ffbdeb74c60beba59e835f1b727';
-
-// document.getElementById('menu-form').addEventListener('submit', function(event) {
-//   event.preventDefault();
-
-//   // Get input values
-//   var dishName = document.getElementById('dish-name').value;
-//   var dishPrice = document.getElementById('dish-price').value;
-//   var tableNumber = document.getElementById('table-number').value;
-
-//   // Create new table row
-//   var newRow = document.createElement('tr');
-//   newRow.innerHTML = `
-//     <td>${dishName}</td>
-//     <td>${dishPrice}</td>
-//     <td>
-//       <button onclick="deleteOrder(this)">Delete</button>
-//     </td>
-//   `;
-
-//   // Append the new row to the corresponding table
-//   var billTable = document.getElementById('table-' + tableNumber);
-//   billTable.appendChild(newRow);
-
-//   // Reset the form
-//   document.getElementById('dish-name').value = '';
-//   document.getElementById('dish-price').value = '';
-//   document.getElementById('table-number').value = '';
-
-//   // Prepare data object for POST request
-//   var data = {
-//     dishName: dishName,
-//     dishPrice: dishPrice,
-//     tableNumber: tableNumber
-//   };
-
-//   // Send data to the backend API using POST request
-//   axios.post(`${BASE_URL}/userdata`, data)
-//     .then(response => {
-//       console.log('Data sent successfully:', response.data);
-//     })
-//     .catch(error => {
-//       console.error('Error sending data:', error);
-//     });
-// });
-
-// function deleteOrder(button) {
-//   // Get the parent row and remove it
-//   var row = button.parentNode.parentNode;
-//   row.parentNode.removeChild(row);
-
-//   // Get the dish name and table number from the deleted row
-//   var dishName = row.cells[0].innerText;
-//   var tableNumber = row.parentNode.parentNode.id.replace('table-', '');
-
-//   // Prepare data object for DELETE request
-//   var data = {
-//     dishName: dishName,
-//     tableNumber: tableNumber
-//   };
-
-//   // Send data to the backend API using DELETE request
-//   axios.delete(`${BASE_URL}/userdata`, { data: data })
-//     .then(response => {
-//       console.log('Data deleted successfully:', response.data);
-//     })
-//     .catch(error => {
-//       console.error('Error deleting data:', error);
-//     });
-// }
-
-
-
-
-
-document.getElementById('menu-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-  
-    // Get input values
-    var dishName = document.getElementById('dish-name').value;
-    var dishPrice = document.getElementById('dish-price').value;
-    var tableNumber = document.getElementById('table-number').value;
-  
-    // Create new table row
-    var newRow = document.createElement('tr');
-    newRow.innerHTML = `
-      <td>${dishName}</td>
-      <td>${dishPrice}</td>
-      <td>
-        <button onclick="deleteOrder(this)">Delete</button>
-      </td>
-    `;
-  
-    // Append the new row to the corresponding table
-    var billTable = document.getElementById('table-' + tableNumber);
-    billTable.appendChild(newRow);
-  
-    // Reset the form
-    document.getElementById('dish-name').value = '';
-    document.getElementById('dish-price').value = '';
-    document.getElementById('table-number').value = '';
-  
-    // Create an object with the data to be sent
-    var data = {
-      dishName: dishName,
-      dishPrice: dishPrice,
-      tableNumber: tableNumber
+  if (name !== "" && price !== "") {
+    let user = {
+      name,
+      price,
     };
-  
-    // Make a POST request using Axios
-    axios.post('https://crudcrud.com/api/4eac9ffbdeb74c60beba59e835f1b727/appoinmentData', data)
-      .then(function(response) {
-        console.log(response.data); // Handle the response from the backend
-      })
-      .catch(function(error) {
-        console.error(error); // Handle any errors that occurred during the request
-      });
-  });
-  
-  function deleteOrder(button) {
-    var row = button.parentNode.parentNode;
-  
-  // Get the dish name from the first column of the row
-  var dishName = row.firstChild.textContent;
 
-  // Make a DELETE request using Axios
-  axios.delete('https://crudcrud.com/api/4eac9ffbdeb74c60beba59e835f1b727/userdata', {
-    data: { dishName: dishName }
-  })
-    .then(function(response) {
-      console.log(response.data); // Handle the response from the backend
+    try {
+      const response = await axios.post(
+        "https://crudcrud.com/api/a6c47c1ed1574956ad716c0b289e18af/appoinmentData",
+        user
+      );
 
-      // Remove the row from the table
-      row.parentNode.removeChild(row);
-    })
-    .catch(function(error) {
-      console.error(error); // Handle any errors that occurred during the request
-    });
+      console.log(response.data);
+      showUsers();
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    document.getElementById("my-form").reset();
   }
-  
-  
+}
+
+const showUsers = async () => {
+  const userList = document.getElementById("users");
+  userList.innerHTML = "";
+
+  try {
+    const response = await axios.get(
+      "https://crudcrud.com/api/a6c47c1ed1574956ad716c0b289e18af/appoinmentData"
+    );
+
+    response.data.forEach((userData) => {
+      userList.innerHTML += `
+        <li>
+          ${userData.name} : ${userData.price} 
+          <input type="button" class="editButton deleteBtn" value="Delete" onclick="deleteUser('${userData._id}')">
+        </li>`;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const editUser = async (_id, name, price) => {
+  try {
+    const response = await axios.put(
+      `https://crudcrud.com/api/a6c47c1ed1574956ad716c0b289e18af/appoinmentData/${_id}`,
+      {
+        name: document.getElementById("name").value = name,
+        price: document.getElementById("price").value = price,
+      }
+    );
+
+    showUsers();
+    console.log(response.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteUser = async (_id) => {
+  try {
+    const response = await axios.delete(
+      `https://crudcrud.com/api/a6c47c1ed1574956ad716c0b289e18af/appoinmentData/${_id}`
+    );
+
+    showUsers();
+    console.log(response.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+showUsers();
